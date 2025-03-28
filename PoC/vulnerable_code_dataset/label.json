@@ -1,0 +1,7 @@
+{
+    "buffer_overflow.c": "vulnerable",
+    "use_after_free.c": "vulnerable",
+    "null_dereference.c": "vulnerable",
+    "safe_buffer.c": "safe",
+    "safe_malloc.c": "safe"
+  }
