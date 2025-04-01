@@ -1,0 +1,105 @@
+alignas
+alignof
+and
+and_eq
+asm
+atomic_cancel
+atomic_commit
+atomic_noexcept
+auto t
+bitand
+bitor
+bool t
+break
+case
+catch
+char t
+char16_t t
+char32_t t
+class
+co_await
+compl
+concept
+const t
+const_cast
+constexpr
+continue
+co_return
+co_yield
+decltype
+default
+define
+delete
+do
+double t
+dynamic_cast
+elif
+else
+endif
+enum
+error
+explicit
+export
+extern t
+false
+float t
+for
+friend t
+goto
+if
+ifdef
+ifndef
+import
+include
+inline t
+int t
+line
+long t
+module
+mutable t
+namespace
+new
+noexcept
+not
+not_eq
+nullptr
+operator
+or
+or_eq
+pragma
+private
+protected
+public
+register t
+reinterpret_cast
+requires
+return
+short t
+signed t
+sizeof
+static t
+static_assert
+static_cast
+struct
+switch
+synchronized
+template
+this
+thread_local t
+throw
+true
+try
+typedef
+typeid
+typename
+undef
+union
+unsigned t
+using
+virtual t
+void t
+volatile t
+wchar_t t
+while
+xor
+xor_eq
