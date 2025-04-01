@@ -7,7 +7,7 @@ with open(fn_path, 'r') as file:
     code = file.read()
 
 parser = c_parser.CParser()
-ast = parser.parse(text=code, filename=code, debug=False)
+ast = parser.parse(text=code, filename=fn_path, debug=False)
 
 
 def show_ast(node, indent=0):
