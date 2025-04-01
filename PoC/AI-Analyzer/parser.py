@@ -22,4 +22,13 @@ def show_ast(node, indent=0):
         elif v is not None:
             show_ast(v, indent + 1)
 
+class FindNode(c_ast.NodeVisitor):
+    def find_func(self, node):
+        print("Function definition found:", node.decl.name)
+        self.generic_visit(node)
+    
+    def find_return(self, node):
+        print("Return statement found!")
+        self.generic_visit(node)
+
 show_ast(ast)
