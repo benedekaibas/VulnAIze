@@ -87,6 +87,7 @@ class Visitor(c_ast.NodeVisitor):
                 var_name = node.expr.name
                 var_info = self.scopes[-1].get(var_name, {})
                 if var_info.get('initialized') is False:
+                    self.features["null_assignment_count"] = self.features.get("null_assignment_count", 0) + 1
                     self.errors.append(f"Potential null pointer dereference at line {node.coord.line}: '{var_name}' might be NULL")
         self.visit(node.expr)
 
