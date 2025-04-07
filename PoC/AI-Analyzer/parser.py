@@ -1,10 +1,8 @@
 from pycparser import c_parser, c_ast
 from typing import Any, List
-import re
 
-
-from pycparser import c_parser, c_ast
 import re
+import ast
 
 
 class ASTCode:
@@ -40,16 +38,8 @@ class ASTCode:
             elif v is not None:
                 self.show_ast(v, indent + 1)
 
-    class FindNode(c_ast.NodeVisitor):
-        def visit_FuncDef(self, node):
-            print(f"Function definition found: {node.decl.name}")
-            self.generic_visit(node)
 
-        def visit_Return(self, node):
-            print("Return statement found!")
-            self.generic_visit(node)
-
-class Visitor:
+class Visitor(c_ast.NodeVisitor):
     def __init__(self):
         self.features = {
             "uses_strcpy": 0,
@@ -57,10 +47,11 @@ class Visitor:
             "num_malloc": 0,
             "num_free": 0
         }
+        self.scopes = [{}]
+        self.errors = []
 
-    def visit_func_call(self, node):
-        if isinstance(node.name, c_ast.ID):
-            func_name = node.name.name
+    def visit_FuncCall(self, node):
+        func_name = node.name.name if isinstance(node.name, c_ast.ID) else None
 
         if func_name == "strcpy":
             self.features["uses_strcpy"] = 1
@@ -76,14 +67,51 @@ class Visitor:
 
         self.generic_visit(node)
 
+    def visit_Assignment(self, node):
+        if isinstance(node.rvalue, c_ast.ID) and node.rvalue.name == "NULL":
+            var_name = node.lvalue.name if isinstance(node.lvalue, c_ast.ID) else None
+            if var_name:
+                self.scopes[-1][var_name] = {'initialized': False}
+        else:
+            if isinstance(node.lvalue, c_ast.ID):
+                var_name = node.lvalue.name
+                if var_name not in self.scopes[-1]:
+                    self.scopes[-1][var_name] = {}
+                self.scopes[-1][var_name]['initialized'] = True
 
+        self.generic_visit(node)
+
+    def visit_UnaryOp(self, node):
+        if node.op == '*':
+            if isinstance(node.expr, c_ast.ID):
+                var_name = node.expr.name
+                var_info = self.scopes[-1].get(var_name, {})
+                if var_info.get('initialized') is False:
+                    self.errors.append(f"Potential null pointer dereference at line {node.coord.line}: '{var_name}' might be NULL")
+        self.visit(node.expr)
+
+
+    def visit_FuncDef(self, node):
+        self.scopes.append({})
+        if node.decl.type.args:
+          for param in node.decl.type.args.params:
+            self.visit(param)
+        self.visit(node.body)
+        self.scopes.pop()
+
+        
 if __name__ == "__main__":
     fn_path = "../vulnerable_code_dataset/buffer_overflow.c"
+
+    # Parse and extract AST
     ast_code = ASTCode(fn_path)
     ast_code.parse_code()
 
     if ast_code.ast:
         ast_code.show_ast(ast_code.ast)
 
-    visitor = ast_code.FindNode()
-    visitor.visit(ast_code.ast)
+        visitor = Visitor()
+        visitor.visit(ast_code.ast)
+
+        print("Extracted features:")
+        print(visitor.features)
