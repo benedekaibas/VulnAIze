@@ -103,7 +103,6 @@ class Visitor(c_ast.NodeVisitor):
 if __name__ == "__main__":
     fn_path = "../vulnerable_code_dataset/buffer_overflow.c"
 
-    # Parse and extract AST
     ast_code = ASTCode(fn_path)
     ast_code.parse_code()
 
@@ -115,3 +114,8 @@ if __name__ == "__main__":
 
         print("Extracted features:")
         print(visitor.features)
+
+    if visitor.errors:
+        print("\nWarnings:")
+        for err in visitor.errors:
+            print(err)
