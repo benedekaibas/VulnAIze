@@ -101,22 +101,34 @@ class Visitor(c_ast.NodeVisitor):
         self.scopes.pop()
 
         
-if __name__ == "__main__":
-    fn_path = "../vulnerable_code_dataset/buffer_overflow.c"
+def analyze_file(fn_path: str):
 
+    # Parse C file into AST using ASTCode class
     ast_code = ASTCode(fn_path)
     ast_code.parse_code()
 
-    if ast_code.ast:
-        ast_code.show_ast(ast_code.ast)
+    if not ast_code.ast:
+        print(f"[!] Failed to parse: {fn_path}")
+        return
 
-        visitor = Visitor()
-        visitor.visit(ast_code.ast)
+    ast_code.show_ast(ast_code.ast)
 
-        print("Extracted features:")
-        print(visitor.features)
+    # Analyze AST using Visitor class
+    visitor = Visitor()
+    visitor.visit(ast_code.ast)
+
+    # Display results
+    print(f"\n[+] Analyzed: {fn_path}")
+    print("Extracted features:")
+    for key, value in visitor.features.items():
+        print(f"  {key}: {value}")
 
     if visitor.errors:
         print("\nWarnings:")
         for err in visitor.errors:
-            print(err)
+            print(f"  - {err}")
+    else:
+        print("No warnings detected.")
+
+if __name__ == "__main__":
+    analyze_file("../vulnerable_code_dataset/buffer_overflow.c")
