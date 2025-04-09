@@ -1,4 +1,3 @@
-// Label: safe
 #include <stdlib.h>
 
 int main() {

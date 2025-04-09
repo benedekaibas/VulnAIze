@@ -1,4 +1,3 @@
-// Label: vulnerable
 #include <stdio.h>
 
 int main() {
