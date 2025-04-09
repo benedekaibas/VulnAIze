@@ -10,6 +10,8 @@ class ASTCode:
         self.fn_path = fn_path
         self.parser = c_parser.CParser()
         self.ast = None
+        self.raw_code = ""
+        self.tokens = []
 
     def preprocess_code(self, code: str) -> str:
         # Remove single-line comments (// ...)
@@ -22,9 +24,17 @@ class ASTCode:
 
     def parse_code(self):
         with open(self.fn_path, 'r') as file:
-            raw_code = file.read()
-            code = self.preprocess_code(raw_code)
+            raw = file.read()
+            self.raw_code = raw  # Save raw code
+            code = self.preprocess_code(raw)
             self.ast = self.parser.parse(text=code, filename=self.fn_path, debug=False)
+            self.tokenize_code()
+    
+    def tokenize_code(self):
+        # TODO: Basic tokenizer has to be improved for later use
+        if self.raw_code:
+            self.tokens = re.findall(r'\w+|[^\s\w]', self.raw_code)
+
 
     def show_ast(self, node, indent=0):
         indent_str = '  ' * indent
