@@ -1,0 +1,10 @@
+Epoch 1/10 - Loss: 0.7057
+Epoch 2/10 - Loss: 0.6636
+Epoch 3/10 - Loss: 0.5994
+Epoch 4/10 - Loss: 0.5875
+Epoch 5/10 - Loss: 0.5471
+Epoch 6/10 - Loss: 0.5528
+Epoch 7/10 - Loss: 0.5177
+Epoch 8/10 - Loss: 0.5157
+Epoch 9/10 - Loss: 0.5120
+Epoch 10/10 - Loss: 0.5137
