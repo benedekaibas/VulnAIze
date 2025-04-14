@@ -84,3 +84,12 @@ feature_dim = len(dataset[0][1])
 model = BGRUWithFeatures(vocab_size=len(vocab), feature_dim=feature_dim)
 
 train_model(model, dataloader)
+
+
+# EVALUATE THE PERFORMANCE OF THE MODEL
+
+def eval_result(model, dataloader):
+    """Evaluate the result that comes from the training model"""
+
+    model.eval()
+    y_true, y_pred = []
