@@ -113,3 +113,7 @@ def flagged_code(model, dataset, threshold=0.75):
             pred = model(tokens.unsqueeze(0), feats.unsqueeze(0)).item()
             if pred > threshold:
                 print(f"⚠️  Likely vulnerable (score={pred:.2f}) → {data[i]['filename']}")
+
+
+eval_result(model, dataloader)
+flagged_code(model, dataset, threshold=0.75)
