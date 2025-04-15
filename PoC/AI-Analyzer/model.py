@@ -92,7 +92,7 @@ def eval_result(model, dataloader):
     """Evaluate the result that comes from the training model"""
 
     model.eval()
-    y_true, y_pred = []
+    y_true, y_pred = [], []
 
     with torch.no_grad():
         for tokens, feats, labels in dataloader:
@@ -103,3 +103,13 @@ def eval_result(model, dataloader):
     from sklearn.metrics import classification_report, confusion_matrix
     print(classification_report(y_true, y_pred, digits=4))
     print(confusion_matrix(y_true, y_pred))
+
+
+def flagged_code(model, dataset, threshold=0.75):
+    """Print filenames where the model predicts high vulnerability"""
+    model.eval()
+    with torch.no_grad():
+        for i, (tokens, feats, _) in enumerate(dataset):
+            pred = model(tokens.unsqueeze(0), feats.unsqueeze(0)).item()
+            if pred > threshold:
+                print(f"⚠️  Likely vulnerable (score={pred:.2f}) → {data[i]['filename']}")
