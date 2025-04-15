@@ -1,3 +1,4 @@
+/First Run
 Epoch 1/10 - Loss: 0.7057
 Epoch 2/10 - Loss: 0.6636
 Epoch 3/10 - Loss: 0.5994
@@ -8,3 +9,15 @@ Epoch 7/10 - Loss: 0.5177
 Epoch 8/10 - Loss: 0.5157
 Epoch 9/10 - Loss: 0.5120
 Epoch 10/10 - Loss: 0.5137
+
+/Second Run
+Epoch 1/10 - Loss: 0.7348
+Epoch 2/10 - Loss: 0.6846
+Epoch 3/10 - Loss: 0.6146
+Epoch 4/10 - Loss: 0.5824
+Epoch 5/10 - Loss: 0.5616
+Epoch 6/10 - Loss: 0.5216
+Epoch 7/10 - Loss: 0.4851
+Epoch 8/10 - Loss: 0.4915
+Epoch 9/10 - Loss: 0.4858
+Epoch 10/10 - Loss: 0.4857
