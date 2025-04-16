@@ -31,7 +31,7 @@ class ASTCode:
             self.tokenize_code()
     
     def tokenize_code(self):
-        # TODO: Basic tokenizer has to be improved for later use
+        # TODO: Basic tokenizer has to be improved for later use since it is only good for the PoC version
         if self.raw_code:
             self.tokens = re.findall(r'\w+|[^\s\w]', self.raw_code)
 

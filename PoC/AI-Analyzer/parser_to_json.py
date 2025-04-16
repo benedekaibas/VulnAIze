@@ -21,7 +21,7 @@ for fn in os.listdir(dataset_path):
         visitor = Visitor()
         visitor.visit(ast_code.ast)
 
-        # Collect result record
+        # Dictionary for storing result records
         result = {
             "filename": fn,
             "raw_code": ast_code.raw_code,
@@ -34,7 +34,7 @@ for fn in os.listdir(dataset_path):
 
         results.append(result)
 
-# Export to JSON
+# Export to JSON and then print result
 with open("vulnerability_results.json", "w") as f:
     json.dump(results, f, indent=2)
 
