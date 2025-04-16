@@ -21,3 +21,33 @@ Epoch 7/10 - Loss: 0.4851
 Epoch 8/10 - Loss: 0.4915
 Epoch 9/10 - Loss: 0.4858
 Epoch 10/10 - Loss: 0.4857
+
+/Questionable output
+PS C:\Users\kaiba\Documents\VulnAIze\PoC\AI-Analyzer> python model.py
+Epoch 1/10 - Loss: 0.6158
+Epoch 2/10 - Loss: 0.5911
+Epoch 3/10 - Loss: 0.5511
+Epoch 4/10 - Loss: 0.5091
+Epoch 5/10 - Loss: 0.5176
+Epoch 6/10 - Loss: 0.4802
+Epoch 7/10 - Loss: 0.4998
+Epoch 8/10 - Loss: 0.4766
+Epoch 9/10 - Loss: 0.4314
+Epoch 10/10 - Loss: 0.4950
+C:\Users\kaiba\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+C:\Users\kaiba\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+C:\Users\kaiba\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+              precision    recall  f1-score   support
+
+         0.0     0.8000    1.0000    0.8889         4
+         1.0     0.0000    0.0000    0.0000         1
+
+    accuracy                         0.8000         5
+   macro avg     0.4000    0.5000    0.4444         5
+weighted avg     0.6400    0.8000    0.7111         5
+
+[[4 0]
+ [1 0]]
