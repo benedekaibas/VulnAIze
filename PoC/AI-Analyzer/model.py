@@ -8,7 +8,7 @@ import json
 import re
 
 # Load JSON data
-with open("vulnerability_results.json") as f:
+with open("prototype_data.json") as f:
     data = json.load(f)
 
 # Build vocabulary
