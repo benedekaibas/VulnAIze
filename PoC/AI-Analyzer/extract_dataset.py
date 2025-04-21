@@ -6,13 +6,15 @@ SRC_DIR = "/home/benedek-kaibas/Documents/VulnAIze/PoC/dataset"
 DEST_DIR = "prototype_dataset"
 N_FILES_PER_CWE = 20  # total: 10 safe + 10 vulnerable
 
-# --- Ensure output directory exists ---
+# Check if the directory storing safe and vulnerable code snippets (dest_dir) already exists. If not it needs to be created
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def is_safe(content: str) -> bool:
+    """Check for safe codes based on the description in each file."""
     return "goodsink" in content or "goodsource" in content or "good sink" in content or "good source" in content
 
 def is_vulnerable(content: str) -> bool:
+    """Check for vulnerable codes based on the description in each file."""
     return (
         "badsink" in content
         or "badsource" in content
