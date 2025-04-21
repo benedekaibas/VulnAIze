@@ -30,4 +30,10 @@ def copy_example(cwe_folder):
         os.makedirs(target_dir, exist_ok=True)
         shutil.copy(src_file, os.path.join(target_dir, os.path.basename(src_file)))
     
-    
+    for cwe in os.listdir(SRC_DIR):
+        full_cwe_path = os.path.join(SRC_DIR, cwe)
+        if os.path.isdir(full_cwe_path):
+            print(f"Processing: {cwe}")
+            copy_example(full_cwe_path)
+
+print("Dataset created in the dataset folder!")
