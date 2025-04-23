@@ -7,6 +7,8 @@ from collections import Counter
 import json
 import re
 
+EXPECTED_FEATURES = ["uses_strcpy", "uses_strncpy", "num_malloc", "num_free", "null_assignment_count"]
+
 # Load JSON data
 with open("prototype_data.json") as f:
     data = json.load(f)
@@ -28,7 +30,9 @@ class VulnerabilityDataset(Dataset):
         self.vocab = vocab
         self.max_len = max_len
         self.inputs = [tokens_to_ids(d["tokens"], vocab, max_len) for d in data]
-        self.features = [list(d["features"].values()) for d in data]
+        self.features = [
+                [d["features"].get(key, 0) for key in EXPECTED_FEATURES]
+                ]
         self.labels = [1 if "strcpy" in d["tokens"] or "errors" in d and len(d["errors"]) > 0 else 0 for d in data]
 
     def __len__(self):
