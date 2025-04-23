@@ -103,7 +103,7 @@ def eval_result(model, dataloader):
         for tokens, feats, labels in dataloader:
             preds = model(tokens, feats)
             y_true += labels.tolist()
-            y_pred += (preds > 0.5).float.tolist()
+            y_pred += (preds > 0.5).float().tolist()
 
     from sklearn.metrics import classification_report, confusion_matrix
     print(classification_report(y_true, y_pred, digits=4))
