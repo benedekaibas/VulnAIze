@@ -31,8 +31,9 @@ class VulnerabilityDataset(Dataset):
         self.max_len = max_len
         self.inputs = [tokens_to_ids(d["tokens"], vocab, max_len) for d in data]
         self.features = [
-                [d["features"].get(key, 0) for key in EXPECTED_FEATURES]
-                ]
+            [d["features"].get(key, 0) for key in EXPECTED_FEATURES]
+            for d in data
+        ]
         self.labels = [1 if "strcpy" in d["tokens"] or "errors" in d and len(d["errors"]) > 0 else 0 for d in data]
 
     def __len__(self):
