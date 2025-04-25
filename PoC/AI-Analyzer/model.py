@@ -7,6 +7,11 @@ from collections import Counter
 import json
 import re
 
+# TODO: Check if I should add more features since even though I have more functions to check features
+# I think the program only checks these listed in the list because only they are stored in the list
+# this can lead to features defined in the parser.py not even being used. Important to check it before
+# moving on
+
 EXPECTED_FEATURES = ["uses_strcpy", "uses_strncpy", "num_malloc", "num_free", "null_assignment_count"]
 
 # Load JSON data
