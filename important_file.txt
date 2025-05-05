@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+int* arr_alloc(int *arr_ptr){
+  arr_ptr = (int*) malloc(sizeof(int));
+  return arr_ptr;
+}
+
+void fill_array(int *arr){
+  for (int i = 0; i < 10; i++){
+    arr[i] = i * 2;
+  }
+  cout << arr;
+}
+
+int main(){
+  int this_arr[10] = {};
+  int *ptr = &this_arr[10];
+  fill_array(ptr);
+
+}
+
+
+In this case buffer overflow wasn't detected by clang static analyzer. I wrote this code snippet for learning pointers and arrays.
+If you run clang static analyzer on the file it won't give any bug detection even though the buffer overflow happens.
+
+Use this example on my tool for testing if the AI based analyzer can detect the bug.
+
+This is a good example since the code is quite simple and short and it demonstrates the pros of using AI based analyzer over static analyzers.
